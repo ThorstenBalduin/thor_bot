@@ -34,22 +34,53 @@ class Follower:
 
 class Brain:
     def __init__(self):
+
         pass
 
     def levelup(self, t: float, info: dict, players: dict) -> Levelup:
         # A very random choice
-        hero = RNG.choice(list(players.keys()))
-        what = RNG.choice(list(LevelupOptions))
+        #hero = Leader.choice(list(players.keys()))
+        #what = RNG.choice(list(LevelupOptions))
+
+        if players["garron"].levels["weapon_damage"]<5:
+         print(players["garron"].levels["weapon_damage"])
+         hero = "garron"
+         what = LevelupOptions.weapon_damage    
+         return Levelup(hero, what)
+        if players["seraphina"].levels["weapon_damage"]<10:
+         hero = "seraphina"
+         what = LevelupOptions.weapon_damage     
+        return Levelup(hero, what)        
+        if players["theron"].levels["weapon_damage"]<5:
+         hero = "theron"
+         what = LevelupOptions.weapon_damage  
         return Levelup(hero, what)
+        if players["seraphina"].levels["weapon_cooldown"]<10:
+         hero = "seraphina"
+         what = LevelupOptions.weapon_cooldown     
+        return Levelup(hero, what)              
+        if players["theron"].levels["weapon_cooldown"]<5:
+         hero = "theron"
+         what = LevelupOptions.weapon_cooldown 
+        return Levelup(hero, what)
+        if players["garron"].levels["weapon_damage"]<5:
+         print(players["garron"].levels["weapon_cooldown"])
+         hero = "garron"
+         what = LevelupOptions.weapon_cooldown    
+         return Levelup(hero, what)  
+        #else
+        # hero = Leader.choice(list(players.keys()))
+        # what = RNG.choice(list(LevelupOptions))             
+        #return Levelup(hero, what)
 
 
 team = Team(
     players=[
-        Leader(hero="alaric"),
-        Follower(hero="kaelen", following="alaric"),
-        Follower(hero="garron", following="alaric"),
-        Follower(hero="isolde", following="alaric"),
-        Follower(hero="lyra", following="alaric"),
+        Leader(hero="theron"),
+        Follower(hero="evelyn", following="theron"),
+        Follower(hero="seraphina", following="theron"),
+        Follower(hero="garron", following="theron"),
+        Follower(hero="lyra", following="theron"),
     ],
     strategist=Brain(),
 )
